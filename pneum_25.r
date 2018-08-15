@@ -19,8 +19,8 @@ data.copy[,ages.in.months:=apply(.SD, 1, function(x){
 
 data_1 <- copy(data.copy)
 
-detach(data_1)
-attach(data_1)
+#### detach(data_1) #####
+#### attach(data_1) ####
 
 par(mfrow=c(2,3))
 
