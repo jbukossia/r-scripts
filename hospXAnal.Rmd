@@ -1,0 +1,37 @@
+---
+title: "HospX Analytics - subsetting data for SAM"
+output: html_notebook
+---
+
+Simple analytics for hospital X within the network. This is a hospital specific analysis for severe malnutrition. 
+
+```{r getData}
+in_data <- subset(data.copy,hosp_id=="hospX_data.csv")
+attach(in_data)
+write.csv(in_data, file="hospX_data.csv")
+```
+
+Subsetting data:
+
+```{r subsetting}
+group_1 <- subset(in_data,is.na(temperature_degrees_celciu)==F)
+group_2 <- subset(in_data,is.na(temperature_degrees_celciu)==T & ((fever=="Yes" & is.na(fever)==F) | (fever=="No" & is.na(fever)==F)))
+
+group_2Y <- subset(in_data,is.na(temperature_degrees_celciu)==T & ((fever=="Yes" & is.na(fever)==F)))
+group_2N <- subset(in_data,is.na(temperature_degrees_celciu)==T & ((fever=="No" & is.na(fever)==F)))
+
+group_21_diarr <- subset(group_2,fever=="Yes" & (diarrhoea=="Yes" & is.na(diarrhoea)==F))
+
+group_211_diarr <- subset(group_2,fever=="No" & (diarrhoea=="Yes" & is.na(diarrhoea)==F))
+```
+
+Summary counts:
+
+```{r}
+nrow(in_data)
+nrow(group_1)
+nrow(group_1_diarr)
+nrow(group_2)
+nrow(group_2Y)
+nrow(group_2N)
+```
