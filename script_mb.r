@@ -8,7 +8,7 @@
 
 in_data <- subset(data.copy,hosp_id=="hospX DH")
 attach(in_data)
-write.csv(in_data, file="hospX_data.csv")
+%%write.csv(in_data, file="hospX_data.csv")
 group_1 <- subset(in_data,is.na(temp)==F)
 group_2 <- subset(in_data,is.na(temp)==T & ((fever=="Yes" & is.na(fever)==F) | (fever=="No" & is.na(fever)==F)))
 
